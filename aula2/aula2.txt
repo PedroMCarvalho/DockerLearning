@@ -1,0 +1,21 @@
+1-Quais as diferenças entre os comandos docker run e docker pull?
+
+Docker run é utilizado para criar e executar um novo container a partir de uma imagem docker existente;
+docker pull serve para baixar uma imagem do repositório Docker HUB (ou outro)
+
+2-Como funciona o fluxo de criação de um container a partir do Docker hub?
+
+Pesquisa da imagem no ducker Hub;
+Escolha da mesma que se tem interesse;
+Download da imagem;
+Criação do container;
+Execução do mesmo.
+
+3-
+
+4-Descreva o que significa cada passo.
+
+No primeiro comando, verifiquei se a instalação do Docker e sua versão;
+Em seguida, baixei a imagem do Nginx;
+Logo após, criei um container do Nginx e atribuí a porta 8080;
+Por ultimo, verifiquei o status do container, também mostrando o conteúdo da pagina http://localhost:8080.

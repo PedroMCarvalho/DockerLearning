@@ -1,0 +1,69 @@
+1-O que é uma imagem?
+
+
+Uma imagem Docker é um pacote leve e
+portátil que contém todos os componentes
+necessários para executar um aplicativo
+ou serviço de software. Basicamente, é
+uma "fotografia" (snapshot) do sistema de
+arquivos e das dependências de um
+software específico, que é executado em
+um ambiente isolado chamado de container.
+
+As imagens Docker são criadas a partir de
+instruções definidas em um arquivo
+chamado "Dockerfile". O Dockerfile
+especifica a base da imagem, as
+dependências necessárias, os parâmetros
+de configuração e a sequência de
+comandos a serem executados para criar a
+imagem. Uma vez construída, a imagem pode
+ser armazenada em um registro Docker, como
+o Docker Hub, facilitando sua
+distribuição e implantação em qualquer
+lugar que suporte a tecnologia Docker.
+
+2-Qual o fluxo de criação de uma imagem?
+
+O primeiro passo na criação de uma
+imagem Docker é escrever um Dockerfile.
+Um Dockerfile é um arquivo de texto que
+contém instruções para construir a
+imagem.
+
+
+Após escrever o Dockerfile, você deve
+construir a imagem usando o comando docker
+build. Este comando lê as instruções do
+Dockerfile e cria uma imagem Docker.
+
+3-Explique os principais comandos do arquivo Dockerfile.
+
+FROM: Define a imagem base a ser usada
+(por exemplo, um sistema operacional, uma
+distribuição Linux, um servidor web,
+etc.)
+
+`COPY`: Copia arquivos ou diretórios do
+sistema host para a imagem.
+
+`ADD`: Semelhante ao `COPY`, mas suporta a
+adição de arquivos remotos e locais, bem
+como a extração de arquivos compactados.
+
+
+CMD: Define o comando padrão a ser
+executado quando o container for iniciado.
+
+4-
+
+5-Documente o passo a passo realizado.
+
+Criei um pag html, Dockerfile, server.js e os fomentei;
+npm i para instalar o package.json
+alterei a porta para 8088 no docker file;
+buildei a aplicação com o comando
+* docker build -t pedromtc/auladocker:aula3q4
+Criei conta e loguei no Dockerhub e desktop;
+Dei push com o comando
+*docker push pedromtc/auladocker:aula3q4

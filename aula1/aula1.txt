@@ -1,0 +1,105 @@
+1-O que é um container?
+
+O container é um ambiente isolado, e também, contem o que será necessário para o sistema, dependendo da forma que vc o usa;
+Conjunto de processos dentro de uma imagem, compartilhando o mesmo kernel e isola as aplicações do seu sistema.
+Por conta da facilidade de criação de ambiente, também se cria ambientes padrões.
+
+É uma unidade que inclui um aplicativo e suas dependências.
+ É executado com virtualização a nível de processo, ou seja, não se virtualiza toda a máquina, mas sim o ambiente que o processo enxerga:
+disco virtual, portas de rede virtuais, etc
+
+2-Containers ou Máquinas Virtuais (VMs). Explique?
+
+A vantagem da VM é poder dividir sua máquina para operar dois sistemas diferentes, fazendo assim duas aplicações rodarem de forma simultanea e independente, e quanto melhor seu computador, mais armazenamento e processamento. Porém, em alguns casos, o uso de sistema operacional é disperdicio, pois se o caso de utilizar apenas uma aplicação, como o wordpress, ter dois sistemas usaria muitos recursos gerais 
+Já o Container se sobresai com relação a VM, pois é capaz de hospedar recursos em sua propria máquina, evitando redundancia e usos desnecessários. Ao mesmo tempo, também é mais seguro, pois os containers são isolados uns dos outros.
+
+3-O que é e para que serve um Dockerfile.
+
+É um arquivo de texto usando para definir e confiugurar a construção de uma imagem Docker.
+Suas imagens servem para criar e executar os containers, que são os ambientes isolados para os app.
+O dockerfile permite executar aplicativos, automatizando-os fornecendo descrições passo a passo de como a imagem deve ser construída.
+
+É um arquivo de texto que contém comandos que o Docker entende.
+ Esses comandos são executados para criar uma imagem Docker (imagem é a aplicação + dependências, a diferença para o container é que a imagem é o
+“template”, e quando colocada para rodar vira um “container” em execução).
+
+4-
+
+5-Descreva o que significa cada passo realizado do exercício anterior.
+
+O primeiro, cria um arquivo dockerfile dentro da pasta app;
+No segundo passo, foi fomentado o arquivo Dockerfile com o conteúdo disponibilizado no guia;
+Não citado no guia, mas para iniciar o docker build, foi necessário abrir o Docker Desktop, e em seguida, foi inserido o comando referente para building do projeto;
+Por fim, o Docker run especificou a porta e diosponibilizou um front-end integrado para inserção de itens.
+Utilizando o comando docker ps, pude lista rno terminal o s itens do meu container
+
+Dentro do Dockerfile, tem:
+
+1. FROM: fala pro Docker usar uma outra
+imagem como base. Nesse caso a imagem é
+“node:18-alpine” que é um mini linux
+com node.js instalado
+
+2. WORKDIR: fala qual pasta vai ser o
+“current working directory” dentro do
+container. Ou seja, quando o container
+começar a rodar, em qual pasta vai estar
+o “terminal” dele.
+
+3. COPY: copia os arquivos da aplicação
+para dentro da imagem. O primeiro “.”
+significa “copie tudo que está aqui”
+(que é a pasta `app/` do git, contendo
+`src/` e `spec/`). O segundo “.”
+significa “cole na pasta de trabalho do
+container” (que é `/app` porque
+configuramos assim no ponto anterior)
+
+4. RUN: roda agora um comando de setup
+(dentro do container). Nesse caso ele
+instala os pacotes do node.js dentro da
+pasta `/app` da imagem
+
+5. CMD: especifica qual comando vai rodar
+*no futuro* quando o
+container iniciar. Como esse container
+serve pra rodar a aplicação javascript,
+o comando é o comum `node src/index.js`
+(aproveitando o fato de que o container
+vai estar na pasta `/app` quando iniciar)
+
+6. EXPOSE: especifica qual porta interna
+do container será exposta quando o
+container for executado. Notar que os
+programas rodando dentro do container
+enxergam portas de rede virtuais, que não
+são as mesmas portas reais da máquina.
+
+
+Escrito o Dockerfile, ele precisa ser
+executado pelo Docker para montar a
+imagem. O docker build faz isso e nomeia a
+imagem produzida com o nome
+getting-started (o -t serve pra dar o
+nome). O “.” no fim do comando fala
+onde está o arquivo de script Dockerfile
+(que está na pasta atual, a app/)
+
+Agora que a imagem está montada, sempre
+que quisermos rodar a aplicação, é só
+iniciar o container. docker run
+getting-started faz isso (roda um
+container com a imagem getting-started que
+montamos previamente). O -d fala pra rodar
+em plano de fundo (ou seja, sem tomar
+controle do terminal onde você está
+dando o comando). O -p 3000:3000 fala pra
+conectar a porta virtual (interna) 3000 do
+container com a porta real (da máquina)
+3000. Mas poderia ser outra coisa, por
+exemplo -p 5000:3000 conectaria a porta
+virtual 3000 do container na porta 5000
+real. O importante é que a porta virtual
+do container seja 3000, porque é nela que
+a aplicação javascript lá de dentro
+está escutando.
