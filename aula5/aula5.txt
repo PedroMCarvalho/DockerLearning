@@ -1,0 +1,14 @@
+1-Explique o que é uma rede bridge no contexto Docker.
+
+É uma rede virtual que possibilita comunicação entre containers em um mesmo host.
+Quando se cria um novo container sem especificar rede, o Docker atribui automativamente o container a uma rede bridge. Ela permite que os containers se comuniquem uns com os outros usando IPs internos.
+Esta comunicação permite criação de ambientes distribuídos em que cada container pode desempenhar um papel específico.
+
+2-Explique sobre redes none e host.
+
+Além da rede bridge, temos a rede None e a rede Host.
+Na rede None, quando se atribui um container a ela, ele é executado completamente isolado, sem nenhuma interface de rede configurada. O que significa que o container não terá acesso a uma rede externa nem a outros containers.
+Ao atribuir um container na rede Host, ele compartilha o nmamespace da rede do host Docker. Isso significa que o container esa a mesma interface de rede do host e adquire o endereço IP do host. Este tipo de rede não atribui
+ de forma isolada a rede e pode acessar os serviços em execução no host sem necessidade de mapear portas.
+
+ 3-

@@ -1,0 +1,80 @@
+1-Explique a diferença entre bind mounts, volumes, tmpfs. 
+
+Com bind mounts, você especifica uma
+pasta do seu sistema (por exemplo
+Downloads, Documentos, Desktop, qualquer
+pasta) e ela é “conectada” ao
+container, de maneira que o container tem
+acesso direto a ela (pode ler e alterar os
+arquivos). Dentro do container, a pasta
+aparece com outro nome (que você escolhe
+também), mas na verdade é a mesma pasta.
+Por exemplo, você pode conectar a pasta
+externa Downloads em `/uma_pasta` dentro
+do container, ou seja, o container vê uma
+pasta com o nome `uma_pasta`, mas na
+verdade ela é a pasta Downloads da sua
+máquina. A utilidade disso é que, sem
+bind mounts, todas as pastas que o
+container usa são “pastas internas”
+dele que são destruídas quando o
+container é desligado. Já com bind
+mounts, como o container está acessando
+uma pasta externa (mas sem saber disso !
+Porque pra ele parece uma pasta interna
+normal), qualquer modificação que ele
+faça nessa pasta não será perdida
+quando ele for desligado, porque a pasta
+existe do lado de fora.
+
+Volumes são praticamente a mesma coisa,
+mas você não tem a opção de decidir
+qual pasta externa será conectada no
+container. O docker automaticamente cria
+uma pasta externa (em algum lugar, ele que
+gerencia) e a conecta ao container. Você
+ainda pode decidir onde que a pasta vai
+aparecer dentro do container, por exemplo
+`/uma_pasta` como antes, ou
+`/mnt/pasta_aqui`, etc. A utilidade é a
+mesma do bind mount: a pasta é externa,
+portanto não é perdida quando o
+container desliga.
+
+tmpfs significa “temporary file
+system” (sistema de arquivos
+temporário). Ele faz praticamente a mesma
+coisa que um Volume, mas o que é
+conectado ao container não é uma pasta
+externa, mas sim uma porção de memória
+RAM ! Ou seja, dentro do container ele
+enxerga uma pasta como antes (você
+escolhe, digamos `/uma_pasta`), mas na
+verdade todo o conteúdo dela não está
+no disco rígido do computador (que é
+onde pastas ficam), mas sim na memória
+RAM ! Isso é útil por exemplo quando
+você sabe que a aplicação que vai rodar
+no container tem por efeito criar vários
+arquivos temporários numa certa pasta
+(digamos `/tmp/cache`). Como o disco
+rígido é lento, se você usasse bind
+mount ou Volume para conectar uma pasta
+externa em `/tmp/cache`, a aplicação
+ficaria lenta. Mas, se usar um tmpfs, a
+aplicação será bem mais rápida porque,
+quando ela criar arquivos em `/tmp/cache`,
+o que vai realmente estar acontecendo por
+baixo dos panos é armazenar esses
+arquivos em memória RAM, a qual é muito
+mais rápida do que o disco rígido.
+
+2-Dê um exemplo de uso de cada. 
+
+Usando Bind Mounts, pode-se montar um diretorio do app web do container, e quando for feito alterações nos arquivos da app, será refletida de forma instantanea no container.
+
+Em um cenário de banco de dados, por exemplo, em um container que se deseja persistir dados para que não seja perdido quando o container for excçuído ou atualizado, pode-se utilizar um volume para armazenar os dados do bd separadamente de um container.
+
+tmpfs. ao executar um container que requer espaço temporário em memoria, como cache, neste caso podemos usar o tmpfs para criar um sistema em memoria para dados temporários.
+
+3-

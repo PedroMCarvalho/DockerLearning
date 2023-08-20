@@ -1,0 +1,26 @@
+1-O que é o docker compose e para que serve? 
+
+
+Ferramenta que permite definir e executar apps Docker compostos por vários containers. Com ele, é possível definir a criação, execução e gerenciamento de app em containers. Em outras palavras, facilita a orquestração de múltiplos containers que trabalham juntos para fornecer algo completo.
+
+
+Vantagens encontradas:
+
+Gerenciamento simplificado de vários contêineres: O Docker Compose permite definir, configurar e executar vários contêineres de forma coordenada e automatizada.
+
+Reprodutibilidade do ambiente: Com o Docker Compose, é possível definir todo o ambiente de desenvolvimento ou produção em um único arquivo, facilitando a replicação do ambiente em diferentes máquinas.
+
+Facilidade de escalabilidade: O Docker Compose permite escalar os serviços definidos no arquivo YAML, aumentando ou diminuindo o número de instâncias de cada serviço com facilidade.
+
+Integração com outras ferramentas: O Docker Compose é frequentemente usado em conjunto com outras ferramentas de orquestração, como o Docker Swarm e o Kubernetes, para facilitar o gerenciamento de aplicativos mais complexos e distribuídos.
+
+2-O docker compose faz uso de um arquivo com a extensão “yml”. 
+Esse tipo de arquivo é específico do docker ? 
+Ou é usado em outros contextos ? 
+Se for específico do docker, explique o motivo. Se não for, mostre pelo menos 1 outro contexto onde arquivos “yml” também são usados.
+
+
+Não é específico do Docker. Ele é um formato de serialização de dados que pode ser usado em diversos contextos para representar informações estruturadas de forma legível.
+
+Embora o Docker Compose faça uso do arquivo YML para definir a configuração dos serviços e recursos do aplicativo em contêineres, o formato YML é amplamente utilizado em outros contextos além do Docker.
+Configuração de aplicativos: Muitos aplicativos e frameworks adotam o formato YML para suas configurações. Por exemplo, o Kubernetes, uma plataforma de orquestração de contêineres, usa arquivos YML para descrever a configuração dos pods, serviços, volumes e outros recursos do cluster.
